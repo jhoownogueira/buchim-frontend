@@ -26,10 +26,6 @@ jobs:
       run: |
         npm run build
 
-    - name: Install PM2
-      run: |
-        npm install -g pm2
-
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
       with:
