@@ -13,6 +13,7 @@
   "dependencies": {
     "@buchim/tokens": "^2.0.2",
     "@phosphor-icons/react": "^2.0.13",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@types/node": "20.6.3",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",

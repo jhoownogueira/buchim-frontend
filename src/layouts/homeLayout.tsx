@@ -48,7 +48,7 @@ export function HomeLayout({ children }: { children: React.ReactNode }) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/seach" className={router.pathname == "/seach" ? "activeLink" : ""}>
+                  <Link href="/search" className={router.pathname == "/search" ? "activeLink" : ""}>
                     <MagnifyingGlass size={24} weight="fill" />
                     <span>Pesquisa</span>
                   </Link>
@@ -82,7 +82,7 @@ export function HomeLayout({ children }: { children: React.ReactNode }) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/seach" className={router.pathname == "/seach" ? "activeLink" : ""}>
+                  <Link href="/search" className={router.pathname == "/search" ? "activeLink" : ""}>
                     <MagnifyingGlass size={24} weight="fill" />
                   </Link>
                 </li>
@@ -122,7 +122,7 @@ export function HomeLayout({ children }: { children: React.ReactNode }) {
               </Link>
             </li>
             <li>
-              <Link href="/seach" className={router.pathname == "/seach" ? "activeLink" : ""}>
+              <Link href="/search" className={router.pathname == "/search" ? "activeLink" : ""}>
                 <MagnifyingGlass size={24} weight="fill" />
               </Link>
             </li>

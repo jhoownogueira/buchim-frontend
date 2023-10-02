@@ -5,10 +5,8 @@ import { useRouter } from "next/navigation";
 export default function Login() {
   const router = useRouter();
   const redirectLogin = function () {
-    router.push("/inicio");
+    router.push("/home");
   };
-
-  console.log(redirectLogin);
   return (
     <>
       <Head>
@@ -65,7 +63,9 @@ export default function Login() {
               <input type="password" placeholder="Senha" />
             </fieldset>
             <button className="forget-password">Esqueceu sua senha?</button>
-            <button className="login">Entrar</button>
+            <button className="login" onClick={redirectLogin}>
+              Entrar
+            </button>
             <button className="google">Entrar com o Google</button>
           </main>
         </div>

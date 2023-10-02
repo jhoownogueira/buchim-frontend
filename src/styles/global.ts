@@ -46,6 +46,12 @@ export const GlobalStyles = createGlobalStyle`
     cursor: not-allowed;
   }
 
+  @media (max-width: 768px) {
+    input {
+      font-size: 16px !important;
+    }
+  }
+
   // Estilos globais para barra de rolagem
   *::-webkit-scrollbar {
     width: 4px;
