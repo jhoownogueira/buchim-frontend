@@ -1,6 +1,8 @@
 import {
   ButtonLogoFull,
   ButtonLogoSmall,
+  FooterMenuMobile,
+  HeaderMenuMobile,
   HomeLayoutContainer,
   MainContent,
   MenuLateral,
@@ -108,6 +110,39 @@ export function HomeLayout({ children }: { children: React.ReactNode }) {
             </button>
           </NavFooter>
         </MenuLateral>
+        {/* Mobile */}
+        <HeaderMenuMobile>
+          <img src="/logo/logo-orange-menu.svg" alt="" />
+        </HeaderMenuMobile>
+        <FooterMenuMobile>
+          <ul>
+            <li>
+              <Link href="/home" className={router.pathname == "/home" ? "activeLink" : ""}>
+                <House size={24} weight="fill" />
+              </Link>
+            </li>
+            <li>
+              <Link href="/seach" className={router.pathname == "/seach" ? "activeLink" : ""}>
+                <MagnifyingGlass size={24} weight="fill" />
+              </Link>
+            </li>
+            <li>
+              <Link href="/find" className={router.pathname == "/find" ? "activeLink" : ""}>
+                <Compass size={24} weight="fill" />
+              </Link>
+            </li>
+            <li>
+              <Link href="/notifications" className={router.pathname == "/notifications" ? "activeLink" : ""}>
+                <Bell size={24} weight="fill" />
+              </Link>
+            </li>
+            <li>
+              <Link href="/perfil" className={router.pathname == "/perfil" ? "activeLink" : ""}>
+                <UserList size={24} weight="fill" />
+              </Link>
+            </li>
+          </ul>
+        </FooterMenuMobile>
         <MainContent>{children}</MainContent>
       </HomeLayoutContainer>
     </>

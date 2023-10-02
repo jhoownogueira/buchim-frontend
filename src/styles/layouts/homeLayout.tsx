@@ -32,14 +32,23 @@ export const MenuLateral = styled.aside<MenuLateralProps>`
     justify-content: start;
     padding-left: 1rem;
   }
+  @media (max-width: 1150px) {
+    display: none;
+  }
 `;
 
 export const ButtonLogoFull = styled.button`
   animation: ${fadeIn} 0.5s ease-in-out;
+  @media (max-width: 1150px) {
+    display: none;
+  }
 `;
 
 export const ButtonLogoSmall = styled.button`
   animation: ${fadeIn} 0.5s ease-in-out;
+  @media (max-width: 1150px) {
+    display: none;
+  }
 `;
 
 export const NavOpen = styled.nav`
@@ -71,6 +80,9 @@ export const NavOpen = styled.nav`
         }
       }
     }
+  }
+  @media (max-width: 1150px) {
+    display: none;
   }
 `;
 
@@ -104,6 +116,9 @@ export const NavClosed = styled.nav`
       }
     }
   }
+  @media (max-width: 1150px) {
+    display: none;
+  }
 `;
 
 export const NavFooter = styled.nav`
@@ -124,10 +139,75 @@ export const NavFooter = styled.nav`
       }
     }
   }
+  @media (max-width: 1150px) {
+    display: none;
+  }
 `;
 
 export const MainContent = styled.main`
   width: 100%;
+  height: 100vh;
   overflow-y: auto;
   background: ${(props) => props.theme.buchim_base_light};
+  @media (max-width: 1150px) {
+    margin-top: 40px;
+    height: calc(100vh - (40px + 60px));
+    padding: 0 1rem;
+  }
+`;
+
+export const HeaderMenuMobile = styled.div`
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  justify-content: start;
+  padding: 0 1rem;
+  background: ${(props) => props.theme.buchim_base_dark};
+  img {
+    width: 80px;
+  }
+
+  @media (max-width: 1150px) {
+    display: flex;
+  }
+`;
+
+export const FooterMenuMobile = styled.div`
+  display: none;
+  position: fixed;
+  align-items: center;
+  justify-content: start;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  padding: 0 1rem;
+  background: ${(props) => props.theme.buchim_base_dark};
+
+  ul {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    li {
+      a {
+        svg {
+          color: ${(props) => props.theme.buchim_base_light};
+        }
+        &.activeLink {
+          svg {
+            color: ${(props) => props.theme.primary};
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1150px) {
+    display: flex;
+  }
 `;
