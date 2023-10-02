@@ -32,4 +32,4 @@ jobs:
         host: ${{ secrets.AWS_IP }}
         username: ${{ secrets.AWS_USER }}
         key: ${{ secrets.SSH_KEY }}
-        script: "cd /opt/node/buchim-frontend && git pull origin main && /root/.nvm/versions/node/v18.18.0/bin/pm2 restart all"
+        script: "sudo su && cd /opt/node/buchim-frontend && git pull origin main && /root/.nvm/versions/node/v18.18.0/bin/pm2 restart all"
