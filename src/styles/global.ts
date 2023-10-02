@@ -11,7 +11,7 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   html {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     @media (max-width: 1290px) {
       font-size: 93.75%;
     }
@@ -27,7 +27,7 @@ export const GlobalStyles = createGlobalStyle`
     background: ${(props) => props.theme["orion_white"]};
   }
   body, input, textarea, button {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     font-weight: 400;
     font-size: 1rem;
   }
