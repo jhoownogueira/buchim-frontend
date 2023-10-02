@@ -20,12 +20,10 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        cd /opt/node/buchim-frontend
         npm install
 
     - name: Build
       run: |
-        cd /opt/node/buchim-frontend
         npm run build
 
     - name: Deploy to EC2
