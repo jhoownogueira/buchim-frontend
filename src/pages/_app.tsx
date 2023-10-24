@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { defaultTheme } from "@/styles/themes/default";
 import { GlobalStyles } from "@/styles/global";
 import React from "react";
+import { AlertsContainers } from "@/utils/AlertsContainers";
 
 type ComponentWithPageLayout = AppProps & {
   Component: AppProps["Component"] & {
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }: ComponentWithPageLayout) {
       ) : (
         <Component {...pageProps} />
       )}
+      <AlertsContainers />
     </ThemeProvider>
   );
 }
