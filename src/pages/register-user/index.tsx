@@ -6,6 +6,7 @@ import Dropzone from "react-dropzone";
 import * as Tabs from "@radix-ui/react-tabs";
 import { useState } from "react";
 import { Alerts } from "@/utils/AlertsContainers";
+import { api } from "@/services/api";
 
 export default function RegisterUser() {
   const router = useRouter();
@@ -13,6 +14,7 @@ export default function RegisterUser() {
     router.push("/");
   };
   const [image, setImage] = useState("");
+  const [file, setFile] = useState();
   const [usuarioUser, setUsuarioUser] = useState("");
   const [nomeUser, setNomeUser] = useState("");
   const [emailUser, setEmailUser] = useState("");
@@ -20,6 +22,7 @@ export default function RegisterUser() {
   const [usuarioRestaurant, setUsuarioRestaurant] = useState("");
 
   const [imageRestaurant, setImageRestaurant] = useState("");
+  const [fileRestaurant, setFileRestaurant] = useState();
   const [nomeRestaurant, setNomeRestaurant] = useState("");
   const [emailRestaurant, setEmailRestaurant] = useState("");
   const [senhaRestaurant, setSenhaRestaurant] = useState("");
@@ -28,18 +31,32 @@ export default function RegisterUser() {
 
   const onDrop = (acceptedFiles: any) => {
     const file = acceptedFiles[0];
-    console.log(file);
+    setFile(file);
     setImage(URL.createObjectURL(file));
   };
 
   const onDropRestaurant = (acceptedFiles: any) => {
     const file = acceptedFiles[0];
-    console.log(file);
+    setFileRestaurant(file);
     setImageRestaurant(URL.createObjectURL(file));
   };
 
-  const registerUser = async () => {};
-  console.log(registerUser);
+  const registerUser = async (data: any) => {
+    try {
+      const response = await api.post("/register/user", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (response.status === 201) {
+        Alerts.successDark("Cadastrado efetuado sucesso");
+        redirectLogin();
+      }
+    } catch (error: any) {
+      console.log(error);
+      Alerts.errorDark(error.response.data.message);
+    }
+  };
 
   const handleRegisterUser = () => {
     if (!image) {
@@ -60,10 +77,103 @@ export default function RegisterUser() {
     };
 
     const formData = new FormData();
-    formData.append("file", image);
+    if (file) {
+      formData.append("file", file);
+    } else {
+      Alerts.warningLight("Nenhum arquivo foi selecionado!");
+      return;
+    }
     formData.append("data", JSON.stringify(data));
 
-    console.log(formData);
+    registerUser(formData);
+  };
+
+  const registerRestaurant = async (data: any) => {
+    try {
+      const response = await api.post("/register/restaurant", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (response.status === 201) {
+        Alerts.successDark("Cadastrado efetuado sucesso");
+        redirectLogin();
+      }
+    } catch (error: any) {
+      console.log(error);
+      Alerts.errorDark(error.response.data.message);
+    }
+  };
+
+  const getDataCEP = async (cep: string) => {
+    try {
+      const response = await api.get(`https://viacep.com.br/ws/${cep}/json/`);
+      if (response.status === 200) {
+        const { logradouro, bairro, localidade, uf } = response.data;
+        return { logradouro, bairro, localidade, uf };
+      }
+    } catch (error: any) {
+      console.log(error);
+      Alerts.errorDark(error.response.data.message);
+    }
+  };
+
+  const handleRegisterRestaurant = async () => {
+    if (!imageRestaurant) {
+      Alerts.warningLight("Selecione uma imagem de perfil");
+      return false;
+    }
+
+    if (
+      !usuarioRestaurant ||
+      !nomeRestaurant ||
+      !emailRestaurant ||
+      !senhaRestaurant ||
+      !cepRestaurant ||
+      !numeroRestaurant
+    ) {
+      Alerts.warningLight("Preencha todos os campos");
+      return false;
+    }
+
+    if (cepRestaurant.length !== 8) {
+      Alerts.warningLight("CEP inválido");
+      return false;
+    }
+
+    const dataCEP = await getDataCEP(cepRestaurant);
+
+    if (!dataCEP) {
+      Alerts.warningLight("CEP inválido");
+      return false;
+    }
+
+    const data = {
+      username: usuarioRestaurant,
+      fullName: nomeRestaurant,
+      email: emailRestaurant,
+      password: senhaRestaurant,
+      cep: cepRestaurant,
+      street: dataCEP.logradouro,
+      number: numeroRestaurant,
+      neighborhood: dataCEP.bairro,
+      city: dataCEP.localidade,
+      state: dataCEP.uf,
+      country: "Brasil",
+      zipCode: cepRestaurant,
+      latitude: -20.424023,
+      longitude: -49.974574,
+    };
+
+    const formData = new FormData();
+    if (fileRestaurant) {
+      formData.append("file", fileRestaurant);
+    } else {
+      Alerts.warningLight("Nenhum arquivo foi selecionado!");
+      return;
+    }
+    formData.append("data", JSON.stringify(data));
+    registerRestaurant(formData);
   };
 
   return (
@@ -232,7 +342,7 @@ export default function RegisterUser() {
                     onChange={(e) => setNumeroRestaurant(e.target.value)}
                   />
                 </fieldset>
-                <button className="register" onClick={() => console.log("cadastrar-restaurante")}>
+                <button className="register" onClick={handleRegisterRestaurant}>
                   Cadastrar
                 </button>
               </article>
