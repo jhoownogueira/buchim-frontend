@@ -52,8 +52,8 @@ export const getNewJwtToken = async (refreshToken: string, type: string) => {
       token: refreshToken,
     });
     if (response.status === 200) {
-      Cookies.set("token", response.data.token);
-      return response.data.token;
+      Cookies.set("token", response.data.access_token);
+      return response.data.access_token;
     }
   } catch (error: any) {
     throw new Error(error);

@@ -16,6 +16,7 @@ export const PostsContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2rem;
 `;
 
 export const Posts = styled.div`
@@ -66,6 +67,10 @@ export const Posts = styled.div`
     object-fit: cover;
     border-radius: ${radii.md};
   }
+
+  img.post-img {
+    min-height: 498.31px;
+  }
   .buttons {
     width: 100%;
     height: 3rem;
@@ -86,6 +91,7 @@ export const Posts = styled.div`
     }
   }
   footer {
+    width: 100%;
     p {
       font-size: ${fontSizes.sm};
       font-weight: ${fontWeights.regular};
