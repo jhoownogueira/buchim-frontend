@@ -1,4 +1,4 @@
-import { fontSizes, fontWeights, radii, sizes } from "@buchim/tokens";
+import { fontSizes, fontWeights, radii, sizes, space } from "@buchim/tokens";
 import styled from "styled-components";
 
 export const LoginContainer = styled.section`
@@ -57,7 +57,7 @@ export const LoginContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
 
     header {
       width: 100%;
@@ -91,11 +91,11 @@ export const LoginContainer = styled.section`
 
     main {
       width: 100%;
-      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding-top: 128px;
       gap: 1rem;
       img {
         width: 165px;
@@ -108,7 +108,54 @@ export const LoginContainer = styled.section`
         font-weight: ${fontWeights.medium};
         color: ${(props) => props.theme.gray_900};
       }
+    }
 
+    .root-tabs {
+      width: 100%;
+      max-width: 35rem;
+      margin-top: 1rem;
+
+      .container-tabs {
+        width: 100%;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: ${space[4]};
+        margin-bottom: 0.5rem;
+
+        .tab-button {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: ${space[2]};
+          padding: ${space[2]} ${space[4]};
+          border-radius: ${radii.md};
+          font-size: 0.875rem;
+
+          &[aria-selected="false"] {
+            color: ${(props) => props.theme.primary_ghost_text};
+            border: 1px solid ${(props) => props.theme.primary_ghost_text};
+            background: transparent;
+            transition: all 0.2s;
+          }
+
+          &[aria-selected="true"] {
+            color: ${(props) => props.theme.white};
+            border: 1px solid transparent;
+            background: ${(props) => props.theme.primary};
+          }
+        }
+      }
+    }
+
+    article {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
       fieldset {
         width: 100%;
         input {
