@@ -114,7 +114,7 @@ export const ResultSearch = styled.div`
   }
 `;
 
-export const CardRestaurant = styled.button`
+export const CardRestaurant = styled.div`
   animation: ${fadeIn} 0.2s ease-in-out;
   position: relative;
   min-width: 280px;
@@ -138,33 +138,54 @@ export const CardRestaurant = styled.button`
     height: 3rem;
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: space-between;
     gap: 0.5rem;
     padding: 0 0.5rem;
     background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
-    img {
-      width: 24px;
-      height: 24px;
-      border-radius: ${radii.full};
-      object-fit: cover;
-    }
-    .info {
+    .left {
       display: flex;
-      flex-direction: column;
-      align-items: start;
+      align-items: center;
+      justify-content: start;
+      gap: 0.5rem;
+      img {
+        width: 24px;
+        height: 24px;
+        border-radius: ${radii.full};
+        object-fit: cover;
+      }
+      .info {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 0.1rem;
+        h5,
+        h6 {
+          font-weight: ${fontWeights.bold};
+        }
+        h5 {
+          font-size: ${fontSizes.xs};
+          color: ${(props) => props.theme.buchim_base_light};
+        }
+        h6 {
+          font-size: ${fontSizes.xxs};
+          color: ${(props) => props.theme.secondary_ghost_text};
+        }
+      }
+    }
+    button.follow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       gap: 0.1rem;
-      h5,
-      h6 {
-        font-weight: ${fontWeights.bold};
-      }
-      h5 {
+      border-radius: ${radii.full};
+      padding: 0.1rem 0.5rem;
+      background: ${(props) => props.theme.primary};
+      color: ${(props) => props.theme.white};
+      p {
         font-size: ${fontSizes.xs};
-        color: ${(props) => props.theme.buchim_base_light};
-      }
-      h6 {
-        font-size: ${fontSizes.xxs};
-        color: ${(props) => props.theme.secondary_ghost_text};
+        font-weight: 500;
+        color: ${(props) => props.theme.white};
       }
     }
   }

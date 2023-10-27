@@ -21,9 +21,9 @@ export const apiI = getApiInstance();
 export const getUserDataCookie = async () => {
   return new Promise<any>((resolve, reject) => {
     try {
-      const token = Cookies.get("acess_token");
+      const token = Cookies.get("token");
       const refreshToken = Cookies.get("refresh_token");
-      const userStringfy = Cookies.get("user");
+      const userStringfy = Cookies.get("user_data");
 
       if (!userStringfy) {
         reject(new Error(`No user found in cookies`));
@@ -96,8 +96,6 @@ apiI.interceptors.response.use(
       console.log({
         to: "👨‍💻 Administrador",
         Error: error,
-        status: error.response.status,
-        message: error.response.data.message,
       });
     }
 
