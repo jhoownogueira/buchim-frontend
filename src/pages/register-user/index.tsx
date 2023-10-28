@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { RegisterUserContainer } from "@/styles/pages/register-user/registerUserStyle";
-import { Cookie, CookingPot, Shrimp } from "@phosphor-icons/react";
+import { Anchor, BowlFood, Cookie, CookingPot, Shrimp, UsersFour } from "@phosphor-icons/react";
 import Dropzone from "react-dropzone";
 import * as Tabs from "@radix-ui/react-tabs";
 import { useState } from "react";
@@ -197,15 +197,15 @@ export default function RegisterUser() {
                 <span>Descubra Novos Sabores</span>
               </div>
               <div className="card">
-                <Shrimp size={32} />
+                <UsersFour size={32} />
                 <span>Amizade à mesa</span>
               </div>
               <div className="card">
-                <Shrimp size={32} />
+                <Anchor size={32} />
                 <span>Deixa sua marca</span>
               </div>
               <div className="card">
-                <Shrimp size={32} />
+                <BowlFood size={32} />
                 <span>Coma com confiança</span>
               </div>
             </div>
@@ -245,6 +245,7 @@ export default function RegisterUser() {
                   <input
                     type="text"
                     placeholder="Usuário"
+                    maxLength={15}
                     value={usuarioUser}
                     onChange={(e) => setUsuarioUser(e.target.value)}
                   />
@@ -298,6 +299,7 @@ export default function RegisterUser() {
                   <input
                     type="text"
                     placeholder="Usuário"
+                    maxLength={15}
                     value={usuarioRestaurant}
                     onChange={(e) => setUsuarioRestaurant(e.target.value)}
                   />

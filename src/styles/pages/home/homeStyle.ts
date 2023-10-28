@@ -17,6 +17,33 @@ export const PostsContainer = styled.main`
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+
+  div.encontrar-restaurant {
+    width: 100%;
+    max-width: 468px;
+    height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed ${(props) => props.theme.gray_500};
+    border-radius: 12px;
+
+    a {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: ${(props) => props.theme.gray_700};
+    }
+  }
+  @media (max-width: 768px) {
+    div.encontrar-restaurant {
+      height: calc(100vh - 9rem);
+    }
+  }
 `;
 
 export const Posts = styled.div`

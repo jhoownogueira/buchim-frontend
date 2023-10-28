@@ -10,18 +10,45 @@ import {
   NavFooter,
   NavOpen,
 } from "@/styles/layouts/homeLayout";
-import { Bell, Compass, Gear, House, MagnifyingGlass, UserList } from "@phosphor-icons/react";
+import { Bell, Compass, House, MagnifyingGlass, UserList } from "@phosphor-icons/react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
+interface UserData {
+  email: string;
+  fullName: string;
+  profileImageURL: string;
+  type: string;
+  userID: string;
+  username: string;
+}
 export function HomeLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [isOpenMenu, setIsOpenMenu] = useState(true);
+  const [userData, setUserData] = useState<UserData>();
 
   const handleMenu = () => {
     setIsOpenMenu(!isOpenMenu);
   };
+
+  const getCookieData = async () => {
+    const getCookie = Cookies.get("user_data");
+    if (!getCookie) {
+      return false;
+    }
+
+    setUserData(JSON.parse(getCookie));
+  };
+
+  useEffect(() => {
+    getCookieData();
+  }, []);
+
+  if (!userData) {
+    return <></>;
+  }
 
   return (
     <>
@@ -105,14 +132,15 @@ export function HomeLayout({ children }: { children: React.ReactNode }) {
             </NavClosed>
           )}
           <NavFooter>
-            <button>
-              <Gear size={24} />
-            </button>
+            <Link href="/" className={router.pathname == "/" ? "activeLink" : ""}>
+              <img src={userData.profileImageURL} title="Sair" />
+            </Link>
           </NavFooter>
         </MenuLateral>
         {/* Mobile */}
         <HeaderMenuMobile>
           <img src="/logo/logo-orange-menu.svg" alt="" />
+          <img src={userData.profileImageURL} className="profile" />
         </HeaderMenuMobile>
         <FooterMenuMobile>
           <ul>
@@ -137,7 +165,7 @@ export function HomeLayout({ children }: { children: React.ReactNode }) {
               </Link>
             </li>
             <li>
-              <Link href="/perfil" className={router.pathname == "/perfil" ? "activeLink" : ""}>
+              <Link href="/" className={router.pathname == "/" ? "activeLink" : ""}>
                 <UserList size={24} weight="fill" />
               </Link>
             </li>
