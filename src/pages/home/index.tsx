@@ -1,12 +1,13 @@
 import { HomeLayout } from "@/layouts/homeLayout";
 import { HomeContainer, Posts, PostsContainer, SugestionsContainer } from "@/styles/pages/home/homeStyle";
-import { ChatCircle, DotsThree, ForkKnife, PaperPlaneTilt, Star } from "@phosphor-icons/react";
+import { ChatCircle, DotsThree, ForkKnife, MagnifyingGlass, PaperPlaneTilt, Star } from "@phosphor-icons/react";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { Alerts } from "@/utils/AlertsContainers";
 import { useRouter } from "next/navigation";
 import { apiI } from "@/services/api";
+import Link from "next/link";
 
 interface IPost {
   postID: string;
@@ -89,45 +90,54 @@ export default function Home() {
       </Head>
       <HomeContainer>
         <PostsContainer>
-          {posts.map((post) => {
-            return (
-              <Posts key={post.postID}>
-                <header>
-                  <div className="left">
-                    <img src={post.restaurant.photoURL} />
-                    <strong>{post.restaurant.username}</strong>
+          {posts.length > 0 ? (
+            posts.map((post) => {
+              return (
+                <Posts key={post.postID}>
+                  <header>
+                    <div className="left">
+                      <img src={post.restaurant.photoURL} />
+                      <strong>{post.restaurant.username}</strong>
+                    </div>
+                    <div className="right">
+                      <button>
+                        <DotsThree size={24} />
+                      </button>
+                    </div>
+                  </header>
+                  <img className="post-img" src={post.imageURL} />
+                  <div className="buttons">
+                    <div className="left">
+                      <button onClick={() => likePosts(post.postID)}>
+                        {post.likedMe ? <ForkKnife size={24} weight="fill" /> : <ForkKnife size={24} />}
+                      </button>
+                      <button>
+                        <ChatCircle size={24} />
+                      </button>
+                      <button>
+                        <PaperPlaneTilt size={24} />
+                      </button>
+                    </div>
+                    <div className="right">
+                      <button>
+                        <Star size={24} />
+                      </button>
+                    </div>
                   </div>
-                  <div className="right">
-                    <button>
-                      <DotsThree size={24} />
-                    </button>
-                  </div>
-                </header>
-                <img className="post-img" src={post.imageURL} />
-                <div className="buttons">
-                  <div className="left">
-                    <button onClick={() => likePosts(post.postID)}>
-                      {post.likedMe ? <ForkKnife size={24} weight="fill" /> : <ForkKnife size={24} />}
-                    </button>
-                    <button>
-                      <ChatCircle size={24} />
-                    </button>
-                    <button>
-                      <PaperPlaneTilt size={24} />
-                    </button>
-                  </div>
-                  <div className="right">
-                    <button>
-                      <Star size={24} />
-                    </button>
-                  </div>
-                </div>
-                <footer>
-                  <p>{post.content}</p>
-                </footer>
-              </Posts>
-            );
-          })}
+                  <footer>
+                    <p>{post.content}</p>
+                  </footer>
+                </Posts>
+              );
+            })
+          ) : (
+            <div className="encontrar-restaurant">
+              <Link href="/search">
+                <MagnifyingGlass size={32} weight="fill" />
+                <span>Encontrar restaurantes</span>
+              </Link>
+            </div>
+          )}
         </PostsContainer>
         <SugestionsContainer>
           <span>Sugestões para você</span>

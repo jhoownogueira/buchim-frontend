@@ -220,4 +220,14 @@ export const RegisterUserContainer = styled.section`
       color: ${(props) => props.theme.primary};
     }
   }
+
+  @media (max-width: 768px) {
+    .left {
+      display: none;
+    }
+
+    .right {
+      padding: 64px 32px 32px 32px;
+    }
+  }
 `;

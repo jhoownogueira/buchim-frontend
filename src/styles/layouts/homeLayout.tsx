@@ -20,6 +20,7 @@ export const HomeLayoutContainer = styled.div`
 export const MenuLateral = styled.aside<MenuLateralProps>`
   position: relative;
   transition: all 0.1s ease-in-out;
+  z-index: 999;
   min-width: ${(props) => (props.$isOpen ? "250px" : "60px")};
   height: 100vh;
   background: ${(props) => props.theme.buchim_base_dark};
@@ -128,16 +129,11 @@ export const NavFooter = styled.nav`
   width: 100%;
   display: flex;
   padding: 1rem;
-  button {
-    svg {
-      color: ${(props) => props.theme.buchim_base_light};
-    }
-    &:hover {
-      svg {
-        transition: all 0.2s;
-        color: ${(props) => props.theme.primary};
-      }
-    }
+  img {
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
   }
   @media (max-width: 1150px) {
     display: none;
@@ -171,8 +167,17 @@ export const HeaderMenuMobile = styled.div`
     width: 80px;
   }
 
+  img.profile {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
   @media (max-width: 1150px) {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 `;
 
