@@ -155,6 +155,7 @@ export const MainContent = styled.main`
 export const HeaderMenuMobile = styled.div`
   display: none;
   position: fixed;
+  z-index: 999;
   top: 0;
   left: 0;
   width: 100%;
@@ -184,6 +185,7 @@ export const HeaderMenuMobile = styled.div`
 export const FooterMenuMobile = styled.div`
   display: none;
   position: fixed;
+  z-index: 999;
   align-items: center;
   justify-content: start;
   bottom: 0;

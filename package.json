@@ -8,7 +8,8 @@
     "build": "next build",
     "start:pm2": "pm2 start scripts/build/app.config.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix"
   },
   "dependencies": {
     "@buchim/tokens": "^2.0.2",
